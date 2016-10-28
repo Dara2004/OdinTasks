@@ -1,1 +1,1 @@
-These are various mini-projects that I made while I was still a beginner with web-development.
+The various mini projects that I made while beginning Web Development
