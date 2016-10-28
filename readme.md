@@ -1,0 +1,1 @@
+These are various mini-projects that I made while I was still a beginner with web-development.
