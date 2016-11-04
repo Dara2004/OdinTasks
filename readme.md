@@ -1,1 +1,1 @@
-The various mini projects that I made while beginning Web Development
+The various mini projects/homeworks/tasks that I made while beginning Web Development
