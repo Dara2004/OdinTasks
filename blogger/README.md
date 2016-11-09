@@ -1,24 +1,3 @@
-# README
+A task from WebDev 101 http://www.theodinproject.com/courses/web-development-101/lessons/ruby-on-rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+kudos to the OdinProject for giving me such a hardtask even though I'm a begginer! Learned a lot in the way
