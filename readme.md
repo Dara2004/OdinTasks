@@ -1,1 +1,1 @@
-The various mini projects/homeworks/tasks that I made in OdinProject. Contains tasks ranging from beginner and above
+The various mini projects/homeworks/tasks that I made in OdinProject. Contains tasks ranging beginner and above
