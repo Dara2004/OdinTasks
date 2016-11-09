@@ -2,6 +2,11 @@ class Article < ApplicationRecord
 	has_many :comments
 	has_many :taggings
 	has_many :tags, through: :taggings
+  has_attached_file :image
+  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }
+
+  validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
+
 
 	def tag_list=(tags_string)
       tag_names = tags_string.split(",").collect{|s| s.strip.downcase}.uniq
@@ -11,7 +16,11 @@ class Article < ApplicationRecord
 
 	def article_params
       params.require(:article).permit(:title, :body, :tag_list)
-    end
+  end
+
+  def tag_list
+      self.tags.map(&:name).join(', ')
+  end
 end
 
 
