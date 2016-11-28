@@ -39,8 +39,7 @@ class Mastermind
         while temp_arr.size < 4 
 		    temp_arr = gets.chomp
 	        temp_arr = temp_arr.split(' ')
-	        p @secret_code
-
+	        
 	        if temp_arr.size < 4 
 	            puts "please enter 4 colors with spaces in between "
             end
@@ -70,36 +69,26 @@ class Mastermind
 		
 	end
 
-
 	def engine_activate
 		temp_arr = Array.new
 		i = 0
-
 		until @win == true || i == 10
 			user_input = ask_for_input
 			@arr[i] = user_input
 			check_if_same(user_input,i)
 			output_board
 			i += 1
-		end
-		
+		end		
 		@reveal = true
 		output_board
-
-
 		puts "Solver wins the game" if @win == true
 		puts "Solver Loses" if @win == false && i == 10	
 	end
-
-
-
-
-	
-
-
 end
 
 game = Mastermind.new
+puts "Pick 4 colours from:\nred: 're'\ngreen: 'gr'\npurple: 'pu'\nyellow: 'ye'\nbrown: 'br'\norange: 'or'\nblack: 'bl'\nwhite: 'wh'"
+puts "Dont forget to put a space between the four colors example: 're br pu bl'"
 game.generate_secret_code
 game.output_board
 game.engine_activate
