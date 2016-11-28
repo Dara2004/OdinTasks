@@ -9,7 +9,7 @@ game.default_layout
 puts game.win?
 puts game.tied?
 
-while game.win? == false || game.tied? == false
+while game.win? != false || game.tied? != false
 	posit = gets.chomp
 	game.add_position(posit.to_i)
 	game.output_board
