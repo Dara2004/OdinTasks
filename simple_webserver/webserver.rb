@@ -20,35 +20,45 @@ def type_of_content(http_path)
   return type
 end
 
-
-
-
-
-server = TCPServer.new('localhost','2000')
+server = TCPServer.new('2000')
 
 loop do
   ispost = false
   client = server.accept  #wait for client to connect
 
   requested_http = client.gets  #requests for the http response
+ 
+
   requested_file = find_path(requested_http)  #returns the path, eg:'index.html'
 
-  ispost = true if requested_http[0] == 'POST' #a bool detector if it is a POST or GET
+  ispost = true if requested_http.split[0] == 'POST' #a bool detector if it is a POST or GET
+
 
 
   file_type = type_of_content(requested_file)#finds the file such as .html or .jpg
 
   if File.exist?(requested_file) && CONTENT_TYPE.include?(file_type)
     file = File.open(requested_file)
+    puts "initialize"
+
+
 
     if ispost == true
-        json_file =  requested_http.split(/\r?\n/)[5]
-        params = Hash.new
-        params << JSON.parse(json_file)
+       from = client.gets
+       user_agent = client.gets
+       content_type = client.gets
+       content_client = client.gets
+       json_string = client.gets
 
-     erb_file = ERB.new File.read requested_file   #reads whatever is the requested file
-     @vikings = params["viking"]["name"],params["viking"]["name"]
-     letter = erb_file.result(binding)
+        json_file = json_string
+        params = JSON.parse(json_file)
+        puts requested_file
+
+     erb_file = ERB.new(File.open(requested_file).read)   #reads whatever is the requested file
+     @vikings = params["viking"]["name"],params["viking"]["email"]
+     letter = erb_file.result binding
+
+     file = File.open('generated_thanks.erb.html', 'w+')
 
      file.write(letter)
 
@@ -59,8 +69,7 @@ loop do
                    "Content-Length: file.size\r\n" +
                    "Connection: close\r\n"
 
-    client.print "\r\n"
-    client.puts file.readlines
+    client.print "\r\n" 
     file.close
     
   else
