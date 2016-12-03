@@ -1,1 +1,1 @@
-The various mini projects/homeworks/tasks that I made in OdinProject. Contains tasks ranging beginner and above
+MY MINI-MINI PROJECTS COLLECTION. All thanks to the odin project for helping me learn webdev!
