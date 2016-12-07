@@ -1,1 +1,1 @@
-MY MINI-MINI PROJECTS COLLECTION such as hangman, simple webserver.  All thanks to the odin project for helping me learn webdev!
+MY MINI-MINI PROJECTS COLLECTION such as hangman, simple webserver. Tasks came from theodinproject
