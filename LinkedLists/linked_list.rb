@@ -23,8 +23,7 @@ class LinkedList
 			@head = @tail = new_node
 			@last_node = new_node
 		else
-			@tail = new_node
-			@last_node.next_node = new_node
+			@last_node.next_node = @tail = new_node
 			@last_node = new_node
 		end
 	end
@@ -57,7 +56,7 @@ class LinkedList
 		msg = ""
 		node = @head
 		cntr = 0
-		while cntr != @node_size		
+		while cntr != @node_size	
 			msg << "#{node.node} -> "
 			node = node.next_node
 			cntr += 1
@@ -82,9 +81,31 @@ class LinkedList
 	end
 
 	def pop
-		node = at(@node_size - 2)
+		@last_node = node = at(@node_size - 2)  		 
 		@node_size -= 1
 		node.next_node = nil		 
+	end
+
+	def contains?(val)
+		cntr = 0
+		node = @head
+		while cntr != @node_size 
+			return true if node.node == val
+			node = node.next_node			
+			cntr += 1			
+		end
+	return false
+    end
+
+    def find(val)
+    	cntr = 0
+		node = @head
+		while cntr != @node_size 
+			return cntr if node.node == val
+			node = node.next_node			
+			cntr += 1			
+		end
+	return nil
 	end
 
 
@@ -106,6 +127,15 @@ nodes.prepend('g')
 nodes.to_s
 nodes.pop
 nodes.to_s
+nodes.append('z')
+nodes.to_s
+nodes.append('c')
+nodes.append('d')
+nodes.to_s
+
+puts nodes.contains?('q')
+puts nodes.find('a')
+
 #puts nodes.at(4).node
 
 
