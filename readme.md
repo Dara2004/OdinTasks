@@ -1,1 +1,1 @@
-MY MINI-MINI PROJECTS COLLECTION such as hangman, simple webserver. Tasks came from theodinproject
+MY MINI-MINI PROJECTS COLLECTION such as hangman, simple webserver,tic-tac-toe etc. Tasks came from theodinproject

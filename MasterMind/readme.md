@@ -1,4 +1,4 @@
-mastermind is 95% working!, no ai though. 
+mastermind is 99.4% working!, no ai though. 
 
 
 HOW TO USE PROGRAM: 
