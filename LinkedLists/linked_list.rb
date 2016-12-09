@@ -56,7 +56,7 @@ class LinkedList
 		msg = ""
 		node = @head
 		cntr = 0
-		while cntr != @node_size	
+		while cntr != @node_size 
 			msg << "#{node.node} -> "
 			node = node.next_node
 			cntr += 1
@@ -71,7 +71,6 @@ class LinkedList
 		else
 			cntr = 0
 			node = @head
-
 			while cntr != index
 				node = node.next_node
 				cntr += 1
@@ -108,41 +107,27 @@ class LinkedList
 	return nil
 	end
 
+	def insert_at(index,data)
+	    cntr = 0
+	    node = @head		
+		    while cntr != index
+		    	node = node.next_node
+		    	cntr += 1
+		    end
+	    node.node = data
+	end
 
-
+	def remove_at(index)
+		cntr = 0
+	    node = @head		
+		    while cntr != index - 1
+		    	node = node.next_node
+		    	cntr += 1
+		    end		
+		node.next_node = at(index + 1)
+		@node_size -= 1
+	end
 end
-
-
-nodes = LinkedList.new
-
-nodes.append('a')
-nodes.append('b')
-nodes.append('c')
-nodes.append('d')
-
-nodes.prepend('g')
-
-#puts nodes.head.node
-
-nodes.to_s
-nodes.pop
-nodes.to_s
-nodes.append('z')
-nodes.to_s
-nodes.append('c')
-nodes.append('d')
-nodes.to_s
-
-puts nodes.contains?('q')
-puts nodes.find('a')
-
-#puts nodes.at(4).node
-
-
-
-
-
-
 
 
 
