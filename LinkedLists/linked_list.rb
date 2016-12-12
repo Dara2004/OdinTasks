@@ -10,7 +10,6 @@ class LinkedList
 	def initialize
 		@head = nil
 		@tail = nil
-
 		@last_node = nil
 		@node_size = 0
 	end
@@ -128,6 +127,3 @@ class LinkedList
 		@node_size -= 1
 	end
 end
-
-
-
