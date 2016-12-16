@@ -1,11 +1,16 @@
 def caesar_cipher (string, number)
+	caesar_string = ""
+
 	string.scan (/./) do |i|
 		if ("a".."z").include? (i.downcase) # Identify letters only. 
 			number.times {i = i.next}
 		end
-		print i[-1] # Wrap from z to a. 
+		caesar_string << i[-1] 
 	end
+	return caesar_string
+
+
 end
  
 
-caesar_cipher("What a string!", 5)
+puts caesar_cipher("What a string!", 5)
