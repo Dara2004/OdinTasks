@@ -24,6 +24,8 @@ class Connect_four
 		puts "-----------------------------"
 		puts "| #{@board[0][0]} | #{@board[1][0]} | #{@board[2][0]} | #{@board[3][0]} | #{@board[4][0]} | #{@board[5][0]} | #{@board[6][0]} |"		
 		puts "-----------------------------"
+		state_of_game
+		
 	end
 
 	def switch_players
@@ -33,7 +35,7 @@ class Connect_four
 	def add_piece(num)
 		num = num.to_i
 		num -= 1
-		if (0..6).include?(num)	&& @board[num][-1] == ' ' && tied? == false
+		if (0..6).include?(num)	&& @board[num][-1] == ' ' && tied? == false && @win == false
 			@player_turns += 1
 			cntr = 0
 			while @board[num][cntr] != ' '
@@ -55,54 +57,59 @@ class Connect_four
 		return nil
 	end
 
+	def check_horizontal_line(collumn,row) 
+		if collumn < 4 #checks for horizontal line (---) that are 4
+			horizontal = [@board[collumn][row],@board[collumn + 1][row],@board[collumn + 2][row],@board[collumn + 3][row]]
+			four_in_one_row(horizontal)
+        end
+	end
+
+	def check_vertical_line(collumn,row)
+		if row < 3   #checks for vertical line (|) that are 4
+		    vertical = [@board[collumn][row],@board[collumn][row + 1],@board[collumn][row + 2],@board[collumn][row + 3]]
+		    four_in_one_row(vertical)
+        end
+    end
+
+    def check_diagonal_line(collumn,row) 
+    	if collumn < 4 && row < 3 # checks for diagonal lines (/) that are 4 
+    		diagonal = [@board[collumn][row],@board[collumn + 1][row + 1],@board[collumn + 2][row + 2],@board[collumn + 3][row + 3]]
+    		four_in_one_row(diagonal)
+    	end
+    end
+
+    def check_opposite_of_diagonal_line(collumn,row)
+    	if collumn > 2 && row < 3 # checks for opposite of diagonal lines (\) that are 4 
+    		diagonally_opposite = [@board[collumn][row],@board[collumn - 1][row + 1],@board[collumn - 2][row + 2],@board[collumn - 3][row + 3]]
+    		four_in_one_row(diagonally_opposite)
+    	end
+    end
 
 	def check_for_win
 		collumn = 0
 		row = 0
-
-		while collumn != @board.size		
-			if collumn < 3 #checks for horizontal line ---
-				horizontal = [@board[collumn][row],@board[collumn + 1][row],@board[collumn + 2][row],@board[collumn + 3][row]]
-				four_in_one_row(horizontal)
-			end
- 
+		while collumn != @board.size		    				
             row = 0
 			while row != @board[0].size
-				if row < 3   #checks for vertical line |
-				    vertical = [@board[collumn][row],@board[collumn][row + 1],@board[collumn][row + 2],@board[collumn][row + 3]]
-				    four_in_one_row(vertical)
-				end
-				row += 1				
+			    check_vertical_line(collumn,row)				
+			    check_horizontal_line(collumn,row)
+			    check_diagonal_line(collumn,row)
+			    check_opposite_of_diagonal_line(collumn,row)	
+			    row += 1				
 			end
 			collumn += 1
 		end
-
 	end
 
-
-
-
-
-
-
-
-
+	def state_of_game
+		if @win == true || tied? == true
+		    if @win == true
+		        switch_players 		    
+		        puts "\nPlayer #{player_letter} has WON THE GAME! " 
+		    else
+		    	puts "\nIT IS A TIE " 
+		    end
+		end		
+	end  
 end
 
-
-
-
-
-
-
-
-game = Connect_four.new
-
-game.output_board
-loop do 
-	num = gets.chomp
-	game.add_piece(num)
-	game.check_vertical_for_win
-	game.output_board
-	puts "WIN #{game.win}"
-end
